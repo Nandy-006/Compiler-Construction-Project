@@ -23,7 +23,7 @@ arrayConstant ::= "[" ( constant ("," constant)* )? "]"
 
 dataType ::= "intijur" | "flote" | "bulen" | "strin" | arrayType
 arrayType ::= "array" "<" ("intijur" | "flote" | "bulen" | "strin") ">"
-identifier ::= alphabet ( alphabet | number )+
+identifier ::= alphabet ( alphabet | number )*
 varName ::= identifier
 
 term ::= constant | varName | varName "[" expression "]" | "(" expression ")" | functionCall
