@@ -8,6 +8,7 @@ arithmeticOperator ::= "+" | "-" | "*" | "/" | "%"
 relationalOperator ::= ">" | "<" | ">=" | "<=" | "==" | "!="
 logicalOperator ::= "||" | "&&" 
 operator ::= arithmeticOperator | relationalOperator | logicalOperator
+unaryOperator ::= "-" | "!"
 
 delimiter ::= "{" | "}" | "(" | ")" | "[" | "]" | ";" | ","
 alphabet ::= ( [a-z] | [A-Z] | "_" )+
@@ -26,7 +27,7 @@ arrayType ::= "array" "<" ("intijur" | "flote" | "bulen" | "strin") ">"
 identifier ::= alphabet ( alphabet | number )+
 varName ::= identifier
 
-term ::= constant | varName | varName "[" expression "]" | "(" expression ")" | functionCall
+term ::= constant | varName | varName "[" expression "]" | "(" expression ")" | functionCall | unaryOperator term
 statement ::= declarationStatement | letStatement | ifStatement | whileStatement | callStatement | returnStatement
 declarationStatement ::= dataType varName ("," varName)+ ";"
 letStatement ::= ( "let" varName ("[" expression "]")? "=" expression ";" ) | ( "let" varName "=" arrayExpression ";" )
