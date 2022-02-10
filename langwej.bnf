@@ -18,7 +18,7 @@ constant ::= integerConstant | floatConstant | booleanConstant | stringConstant 
 integerConstant ::= ("+" | "-")? number
 floatConstant ::= ("+" | "-")? number "." number (("E" | "e") ("+" | "-")? number)?
 booleanConstant	::= "stonks" | "not_stonks"
-stringConstant	::= # to be defined
+stringConstant	::= "\"" (.*) "\""
 arrayConstant ::= "[" ( constant ("," constant)* )? "]"
 
 dataType ::= "intijur" | "flote" | "bulen" | "strin" | arrayType
@@ -27,8 +27,9 @@ identifier ::= alphabet ( alphabet | number )+
 varName ::= identifier
 
 term ::= constant | varName | varName "[" expression "]" | "(" expression ")" | functionCall
-statement ::= letStatement | ifStatement | whileStatement | callStatement | returnStatement
-letStatement ::= "let" dataType? varName ("[" expression "]")? "=" expression | arrayExpression ";"
+statement ::= declarationStatement | letStatement | ifStatement | whileStatement | callStatement | returnStatement
+declarationStatement ::= dataType varName ("," varName)+ ";"
+letStatement ::= ( "let" varName ("[" expression "]")? "=" expression ";" ) | ( "let" varName "=" arrayExpression ";" )
 ifStatement ::= "if" "(" expression ")" "{" statement* "}" ("else" "{" statement* "}")?
 whileStatement ::= "whil" "(" expression ")" "{" statement* "}"
 callStatement ::= "coll" functionCall
