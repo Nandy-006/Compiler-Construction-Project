@@ -8,7 +8,7 @@ arithmeticOperator ::= "+" | "-" | "*" | "/" | "%"
 relationalOperator ::= ">" | "<" | ">=" | "<=" | "==" | "!="
 logicalOperator ::= "||" | "&&" 
 operator ::= arithmeticOperator | relationalOperator | logicalOperator
-unaryOperator ::= "-" | "!"
+unaryOperator ::= "-" | "+" | "!"
 
 delimiter ::= "{" | "}" | "(" | ")" | "[" | "]" | ";" | ","
 alphabets ::= ( [a-z] | [A-Z] | "_" )+
