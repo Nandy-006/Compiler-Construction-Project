@@ -1,5 +1,5 @@
 keyword ::= "whil" | "if" | "else" | "stonks" | "not_stonks" | "retun" | "intijur" | "flote" | "bulen" | "strin"
-            | "funkshun" | "array" | "coll" | "null" | "let"
+            | "funkshun" | "array" | "coll" | "null" | "let" | "char"
 
 symbol ::= "{" | "}" | "(" | ")" | "[" | "]" | ";" | "," | "+" | "-" | "*" | "/" | "%" | 
             ">" | "<" | ">=" | "<=" | "==" | "!=" | "=" | "||" | "&&" 
@@ -8,25 +8,27 @@ arithmeticOperator ::= "+" | "-" | "*" | "/" | "%"
 relationalOperator ::= ">" | "<" | ">=" | "<=" | "==" | "!="
 logicalOperator ::= "||" | "&&" 
 operator ::= arithmeticOperator | relationalOperator | logicalOperator
+unaryOperator ::= "-" | "!"
 
 delimiter ::= "{" | "}" | "(" | ")" | "[" | "]" | ";" | ","
 alphabet ::= ( [a-z] | [A-Z] | "_" )+
 number ::=  [0-9]+
 alphanumeral ::= ( alphabet | number )+
 
-constant ::= integerConstant | floatConstant | booleanConstant | stringConstant | "null"
+constant ::= integerConstant | floatConstant | booleanConstant | stringConstant | charConstant | "null"
 integerConstant ::= ("+" | "-")? number
 floatConstant ::= ("+" | "-")? number "." number (("E" | "e") ("+" | "-")? number)?
 booleanConstant	::= "stonks" | "not_stonks"
 stringConstant	::= "\"" (.*) "\""
 arrayConstant ::= "[" ( constant ("," constant)* )? "]"
+charConstant ::= "'" (.) "'"
 
-dataType ::= "intijur" | "flote" | "bulen" | "strin" | arrayType
+dataType ::= "intijur" | "flote" | "bulen" | "strin" | "char" | arrayType
 arrayType ::= "array" "<" ("intijur" | "flote" | "bulen" | "strin") ">"
 identifier ::= alphabet ( alphabet | number )+
 varName ::= identifier
 
-term ::= constant | varName | varName "[" expression "]" | "(" expression ")" | functionCall
+term ::= constant | varName | varName "[" expression "]" | "(" expression ")" | functionCall | unaryOperator term
 statement ::= declarationStatement | letStatement | ifStatement | whileStatement | callStatement | returnStatement
 declarationStatement ::= dataType varName ("," varName)+ ";"
 letStatement ::= ( "let" varName ("[" expression "]")? "=" expression ";" ) | ( "let" varName "=" arrayExpression ";" )
