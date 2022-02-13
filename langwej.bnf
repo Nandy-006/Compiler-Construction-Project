@@ -11,9 +11,9 @@ operator ::= arithmeticOperator | relationalOperator | logicalOperator
 unaryOperator ::= "-" | "!"
 
 delimiter ::= "{" | "}" | "(" | ")" | "[" | "]" | ";" | ","
-alphabet ::= ( [a-z] | [A-Z] | "_" )+
+alphabets ::= ( [a-z] | [A-Z] | "_" )+
 number ::=  [0-9]+
-alphanumeral ::= ( alphabet | number )+
+alphanumeral ::= ( alphabets | number )+
 
 constant ::= integerConstant | floatConstant | booleanConstant | stringConstant | charConstant | "null"
 integerConstant ::= ("+" | "-")? number
@@ -25,7 +25,7 @@ charConstant ::= "'" (.) "'"
 
 dataType ::= "intijur" | "flote" | "bulen" | "strin" | "char" | arrayType
 arrayType ::= "array" "<" ("intijur" | "flote" | "bulen" | "strin") ">"
-identifier ::= alphabet ( alphabet | number )*
+identifier ::= alphabets ( alphabets | number )*
 varName ::= identifier
 
 term ::= constant | varName | varName "[" expression "]" | "(" expression ")" | functionCall | unaryOperator term
