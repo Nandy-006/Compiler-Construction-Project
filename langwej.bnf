@@ -2,7 +2,7 @@ keyword ::= "whil" | "if" | "else" | "stonks" | "not_stonks" | "retun" | "intiju
             | "funkshun" | "array" | "coll" | "null" | "let" | "char"
 
 symbol ::= "{" | "}" | "(" | ")" | "[" | "]" | ";" | "," | "+" | "-" | "*" | "/" | "%" | 
-            ">" | "<" | ">=" | "<=" | "==" | "!=" | "=" | "||" | "&&" 
+            ">" | "<" | ">=" | "<=" | "==" | "!=" | "=" | "||" | "&&" | "!"
 
 arithmeticOperator ::= "+" | "-" | "*" | "/" | "%"
 relationalOperator ::= ">" | "<" | ">=" | "<=" | "==" | "!="
