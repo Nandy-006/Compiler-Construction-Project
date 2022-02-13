@@ -2,7 +2,7 @@
 
 // logicalOperator ::= "||" | "&&"
 
-let myFsm = {
+let logicalOperator = {
     initial: 'emptyOperator',
     final: 'orOperator, andOperator',
     events: [

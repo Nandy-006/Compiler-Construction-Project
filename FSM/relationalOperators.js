@@ -2,7 +2,7 @@
 
 // relationalOperator ::= ">" | "<" | ">=" | "<=" | "==" | "!="
 
-let myFsm = {
+let relationalOperator = {
     initial: 'emptyOperator',
     final: ['greaterThan, lessThan, greaterThanOrEqual, lessThanOrEqual, equal, notEqual'],
     events: [

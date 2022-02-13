@@ -2,7 +2,7 @@
 
 // arithmeticOperator ::= "+" | "-" | "*" | "/" | "%"
 
-let myFsm = {
+let arithmeticOperator = {
     initial: 'emptyOperator',
     final: ['plus', 'minus', 'times', 'divide', 'modulo'],
     events: [
