@@ -6,8 +6,8 @@ let identifier = {
     initial: 'EmptyLexeme',
     final: 'Identifier',
     events: [
-        {name: 'a-z,A-Z,_', from: 'EmptyLexeme', to: 'startsWithAlphabet'},
-        {name: 'a-z,A-Z,_,0-9', from: 'startsWithAlphabet', to: 'Identifier'},
+        {name: 'a-z,A-Z,_', from: 'EmptyLexeme', to: 'Identifier'},
+        {name: 'a-z,A-Z,_,0-9', from: 'Identifier', to: 'Identifier'},
     ], 
     
     // Final state
