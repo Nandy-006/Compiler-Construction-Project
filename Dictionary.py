@@ -4,8 +4,7 @@ KEYWORDS = [
 ]
 
 SYMBOLS = [
-    "{", "}", "(", ")", "[", "]", ";", ",", "+", "-", "*", "/", "%", 
-    ">", "<", ">=", "<=", "==", "!=", "=", "||", "&&", "!"
+    "{", "}", "(", ")", "[", "]", ";", ",", "+", "-", "*", "/", "%"
 ]
 
 TOKENS = {
@@ -54,3 +53,22 @@ TOKENS = {
   	"STRING": (67, "LITERAL_STRING"),
   	"IDENTIFIER": (69, "IDENTIFIER")
 }
+
+class STATES:
+	EMPTY_LEXEME = "emptyLexeme"
+	ALPHABET = "alphabet"
+	ALNUM = "alnum"
+	NUMBER = "number"
+	POINT = "point"
+	FLOAT = "float"
+	EXPONENT = "exponent"
+	OPEN_CHAR = "openChar"
+	CHAR = "char"
+	OPEN_STRING = "openString"
+	GREATER_THAN = "greaterThan"
+	LESS_THAN = "lessThan"
+	EQUAL_HALF = "equalHalf"
+	NOT_EQUAL_HALF = "notEqualHalf"
+	OR_HALF = "orHalf"
+	AND_HALF = "andHalf"
+	

@@ -1,77 +1,73 @@
-from curses.ascii import isalnum
+from curses.ascii import isalnum, isalpha
+from os import stat
 import re
-from Dictionary import KEYWORDS, SYMBOLS, TOKENS
+from Dictionary import KEYWORDS, SYMBOLS, TOKENS, STATES
 
 class Lexer():
     def __init__(self, filepath):
         self.path = filepath
-        self.lines = []
+        self.processed = None
         self.eof = False
-        self.FLOAT_PATTERN = r"[+-]?[0-9]+([.][0-9]+)?([Ee][+-]?[0-9]+)?"
-        self.INTEGER_PATTERN = r"[+-]?[0-9]+"
-        self.IDENTIFIER_PATTERN = r"^[_A-Za-z][_A-Za-z0-9]*"
         self.COMMENT_PATTERN = r"(?:\/\*(?:[^*]|[\r\n]|(?:\*+(?:[^*\/]|[\r\n])))*\*+\/)|(?:\/\/.*)"
 
-        self.codeIndex = 0
-        self.charIndex = 0
+        self.lineNum = 0
+        self.charIndex = -1
+        self.newLine = True
     
     def processFile(self):
         with open(self.path, "r") as f:
-            processedFile = re.sub(self.COMMENT_PATTERN, "", f.read()).split("\n")
-            self.lines = [line.strip() for line in processedFile]
+            self.processed = re.sub(self.COMMENT_PATTERN, "", f.read())
+    
+    def getChar(self):
+        if self.newLine:
+            self.lineNum += 1
+            self.newLine = False
+        if self.charIndex+1 < len(self.processed):
+            self.charIndex += 1
+            if self.processed[self.charIndex] == "\n":
+                self.newLine = True
+            return self.processed[self.charIndex]
+        return None
+
+    def retract(self):
+        self.charIndex -= 1
+        if self.charIndex < -1:
+            raise Exception("Invalid retract")
 
     def getNextToken(self): # (Line, Lexeme, Token id, Token)
         lexeme = ""
-        lexemeLineNum = None
-        isString = False
-        isChar = False
-        
-        while self.codeIndex < len(self.code):
-            if isChar:
-                pass
-            elif isString:
-                pass
-            else:
-                code = self.code[self.codeIndex][self.charIndex:]
-                lineNum = self.code[self.codeIndex][1]
+        state = STATES.EMPTY_LEXEME
 
-                if code == "":
-                    self.codeIndex += 1
-                    self.charIndex = 0
-                if code in KEYWORDS or code in SYMBOLS:
-                    self.codeIndex += 1
-                    return (lineNum, code, TOKENS[code][0], TOKENS[code][1])
-                if re.fullmatch(self.FLOAT_PATTERN, code) is not None:
-                    self.codeIndex += 1
-                    return (lineNum, code, TOKENS["FLOAT"][0], TOKENS["FLOAT"][1])
-                if re.fullmatch(self.INTEGER_PATTERN, code) is not None:
-                    self.codeIndex += 1
-                    return (lineNum, code, TOKENS["INT"][0], TOKENS["INT"][1])
-                if re.fullmatch(self.IDENTIFIER_PATTERN, code) is not None:
-                    self.codeIndex += 1
-                    return (lineNum, code, TOKENS["IDENTIFIER"][0], TOKENS["IDENTIFIER"][1])
-                if 2 <= len(self.testString) <= 3 and code[0] =="'" and code[-1] == "'":
-                    self.codeIndex += 1
-                    return (lineNum, code, TOKENS["CHAR"][0], TOKENS["CHAR"][1])
-                if code[0] == "'":
-                    self.codeIndex += 1
-                    isChar = True
-                    lexeme += code
-                    lexemeLineNum = lineNum
-                elif code[0] == "\"":
-                    self.codeIndex += 1
-                    if len(code) > 1 and code[-1] == "\"":
-                        return (lineNum, code, TOKENS["STRING"][0], TOKENS["STRING"][1])
-                    isString = True
-                    lexeme += code
-                    lexemeLineNum = lineNum
+        while True:
+            char = self.getChar()
+            if char is None and lexeme != "":
+                raise Exception(f"Invalid lexeme {lexeme} on line {self.lineNum}")
+            
+            if state == STATES.EMPTY_LEXEME:
+                if char in SYMBOLS:
+                    return (self.lineNum, char, TOKENS[char][0], TOKENS[char][1])
+                elif char.isalpha() or char == "_":
+                    state = STATES.ALPHABET
+                elif char.isdecimal():
+                    state = STATES.NUMBER
+                elif char == "'":
+                    state = STATES.OPEN_CHAR
+                elif char == "\"":
+                    state = STATES.OPEN_STRING
+                elif char == ">":
+                    state = STATES.GREATER_THAN
+                elif char == "<":
+                    state = STATES.LESS_THAN
+                elif char == "=":
+                    state = STATES.EQUAL_HALF
+                elif char == "!":
+                    state = STATES.NOT_EQUAL_HALF
+                elif char == "|":
+                    state = STATES.OR_HALF
+                elif char == "&":
+                    state = STATES.AND_HALF
                 else:
-                    pass
-        
-        if lexeme == "":
-            raise Exception("No more lexemes")
-        else:
-            raise Exception(f"Invalid Lexeme '{lexeme}' in Line {lexemeLineNum}")
+                    raise Exception(f"Invalid character {char} in line {self.lineNum}s")
+            elif state == STATES.ALPHABET:
+                pass
 
-    def hasNextToken(self):
-        return self.codeIndex < len(self.code)
