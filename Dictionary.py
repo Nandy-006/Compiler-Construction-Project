@@ -7,6 +7,11 @@ SYMBOLS = [
     "{", "}", "(", ")", "[", "]", ";", ",", "+", "-", "*", "/", "%"
 ]
 
+DELIMITERS = [
+	"{", "}", "(", ")", "[", "]", ";", ",", "+", "-", "*", "/", "%", 
+	">", "<", ">=", "<=", "==", "!=", "=", "||", "&&", "!"
+]
+
 TOKENS = {
     "whil": (0, "KEYWD_WHILE"),
   	"if": (1, "KEYWD_IF"),
@@ -62,6 +67,7 @@ class STATES:
 	POINT = "point"
 	FLOAT = "float"
 	EXPONENT = "exponent"
+	EXPONENT_SIGN = "exponentSign"
 	OPEN_CHAR = "openChar"
 	CHAR = "char"
 	OPEN_STRING = "openString"
