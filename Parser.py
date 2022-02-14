@@ -1,5 +1,4 @@
 import sys
-from tabnanny import check
 from Lexer import Lexer
 from Utils import checkFile
 
