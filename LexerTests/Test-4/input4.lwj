@@ -1,0 +1,50 @@
+/**
+    documentation
+*/
+
+whil((i&&j) ||k<=3482.32e-4942){array<strin>arr;
+let arr=["hello\nworld", "compiler      construction", "gah3#*hng   3)#~%A3&^A  G$ ag"];
+flote f1, f2;
+/*
+    multiline comments
+    intijur a___; let a=5;
+    bulen x; let x = stonks;
+    whil(x) {
+        a = a+1;
+        if(!a - a <10) {
+            x= not_stonks;
+        }
+    }
+*/
+let f1=-5678.38E+21984;
+let f2=+2;
+bulen predict; let predict= stonks;
+if(f1*f2<=0) {let predict=not_stonks;}
+char newline; let newline=        '\n'                      ;
+}
+// single line comment
+funkshun intijur mergesort(array <    intijur>a, intijur l, intijur   r) {
+    intijur m; let m=(l+r)/2;
+    coll mergesort(a, l        ,         m);
+    coll mergesort(a,m+1,r);
+}
+
+if(arr[1] != "compiler construction") {
+    retun "hi";
+}
+
+abc // def
+abc /* def
+hello */ def
+
+whil if else stonks not_stonks retun intijur flote bulen strin funkshun array coll null let char
+{([)] ;,+- */%><>= == != =|| &&}
+-f11 +af_j9f3 !variable
++35872 -3183519 214 000214 214000
+-3.5383 +000028532.0 1424.24829e4218 +1.04e-42 -000.100+E249
+
+a=/*
+multiline comment while assigning
+*/ 3;
+
+array<intijur> a= ["hello", 213, not_stonks, 1.0E-6, '.', "newline\n", "'", '"'];
