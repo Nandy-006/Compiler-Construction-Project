@@ -17,7 +17,7 @@ alphanumeral ::= ( alphabets | number )+
 
 constant ::= integerConstant | floatConstant | booleanConstant | stringConstant | charConstant | "null"
 integerConstant ::= ("+" | "-")? number
-floatConstant ::= ("+" | "-")? number ["." number (("E" | "e") ("+" | "-")? number)?]?
+floatConstant ::= ("+" | "-")? number ("." number)? [(("E" | "e") ("+" | "-")? number)?]?
 booleanConstant	::= "stonks" | "not_stonks"
 stringConstant	::= "\"" (.*) "\""
 arrayConstant ::= "[" ( constant ("," constant)* )? "]"
@@ -30,7 +30,7 @@ varName ::= identifier
 
 term ::= constant | varName | varName "[" expression "]" | "(" expression ")" | functionCall | unaryOperator term
 statement ::= declarationStatement | letStatement | ifStatement | whileStatement | callStatement | returnStatement
-declarationStatement ::= dataType varName ("," varName)+ ";"
+declarationStatement ::= dataType varName ("=" expression)? (("," varName)+)? ";"
 letStatement ::= ( "let" varName ("[" expression "]")? "=" expression ";" ) | ( "let" varName "=" arrayExpression ";" )
 ifStatement ::= "if" "(" expression ")" "{" statement* "}" ("else" "{" statement* "}")?
 whileStatement ::= "whil" "(" expression ")" "{" statement* "}"
