@@ -9,7 +9,7 @@ SYMBOLS = [
 
 DELIMITERS = [
 	"{", "}", "(", ")", "[", "]", ";", ",", "+", "-", "*", "/", "%", 
-	">", "<", ">=", "<=", "==", "!=", "=", "||", "&&", "!"
+	">", "<", "=", "|", "&", "!"
 ]
 
 TOKENS = {
@@ -61,6 +61,8 @@ TOKENS = {
 
 class STATES:
 	EMPTY_LEXEME = "emptyLexeme"
+	MIDDLE_SINGLE_COMMENT = "middleSingleComment"
+	MIDDLE_MULTIPLE_COMMENT = "middleMultipleComment"
 	ALPHABET = "alphabet"
 	ALNUM = "alnum"
 	NUMBER = "number"
@@ -69,6 +71,7 @@ class STATES:
 	EXPONENT = "exponent"
 	EXPONENT_SIGN = "exponentSign"
 	OPEN_CHAR = "openChar"
+	SLASH_CHAR = "slashChar"
 	CHAR = "char"
 	OPEN_STRING = "openString"
 	GREATER_THAN = "greaterThan"

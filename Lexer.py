@@ -6,14 +6,12 @@ class Lexer():
     def __init__(self, filepath):
         self.path = filepath
         self.eof = False
-        self.COMMENT_PATTERN = r"(?:\/\*(?:[^*]|[\r\n]|(?:\*+(?:[^*\/]|[\r\n])))*\*+\/)|(?:\/\/.*)"
-
         self.lineNum = 0
         self.charIndex = -1
         self.newLine = True
 
         with open(self.path, "r") as f:
-            self.processed = re.sub(self.COMMENT_PATTERN, "", f.read())
+            self.processed = f.read()
         self.processed += '\n'
 
     def getChar(self):
@@ -29,6 +27,7 @@ class Lexer():
 
     def retract(self):
         self.charIndex -= 1
+        self.newLine = False
         if self.charIndex < -1:
             raise Exception("Invalid retract")
 
@@ -50,6 +49,10 @@ class Lexer():
                     pass
                 elif char in SYMBOLS:
                     return (self.lineNum, char, TOKENS[char][0], TOKENS[char][1])
+                elif char == "#":
+                    state = STATES.MIDDLE_SINGLE_COMMENT
+                elif char == "`":
+                    state = STATES.MIDDLE_MULTIPLE_COMMENT
                 elif char.isalpha() or char == "_":
                     lexeme += char
                     state = STATES.ALPHABET
@@ -83,6 +86,21 @@ class Lexer():
                 else:
                     raise Exception(f"Invalid character {char} in line {self.lineNum}")
 
+            
+            elif state == STATES.MIDDLE_SINGLE_COMMENT:
+                if char == "\n":
+                    state = STATES.EMPTY_LEXEME
+                else:
+                    state = STATES.MIDDLE_SINGLE_COMMENT
+
+            
+            elif state == STATES.MIDDLE_MULTIPLE_COMMENT:
+                if char == "`":
+                    state = STATES.EMPTY_LEXEME
+                else:
+                    state = STATES.MIDDLE_MULTIPLE_COMMENT
+
+            
             elif state == STATES.ALPHABET:
                 if char.isalpha() or char == "_":
                     lexeme += char
@@ -168,11 +186,21 @@ class Lexer():
                     lexeme += char
                     state = STATES.EMPTY_LEXEME
                     return (self.lineNum, lexeme, TOKENS["CHAR"][0], TOKENS["CHAR"][1])                    
+                elif char == "\\":
+                    lexeme += char
+                    state = STATES.SLASH_CHAR
                 elif char == "\n":
                     raise Exception(f"Expected a closing ' in line {self.lineNum}, not found")
                 else:
                     lexeme += char
                     state = STATES.CHAR
+
+            elif state == STATES.SLASH_CHAR:
+                if char in ["n","t","\"","r","\\"]:
+                    lexeme += char
+                    state = STATES.CHAR
+                else:
+                    raise Exception(f"Expected an escape sequence character in line {self.lineNum}, found {char}")
 
             elif state == STATES.CHAR:
                 if char == "'":
