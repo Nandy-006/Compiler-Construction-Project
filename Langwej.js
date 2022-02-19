@@ -1,6 +1,6 @@
 // fsm-config: {"font" : "Roboto", "bgColor": "white", "color": "black", "fontColor":"black", "finalShape": "doubleoctagon"}
 
-// Comment types : //,/*
+
 let Langwej = {
     initial: 'emptyLexeme',
     final: ['_IDENTIFIER', '_INTEGER', '_KEYWORD', '_FLOAT', 'CHAR', 'STRING', 'GTEQ', 'LTEQ', 'ISEQ', 'NOTEQ', '_GT', '_LT', '_NOT', 'SYMBOL', 'OR', 'AND', '_ASSIGN', "SingleComment","MultipleComment"],
