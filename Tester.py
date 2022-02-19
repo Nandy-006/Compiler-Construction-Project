@@ -1,3 +1,6 @@
+# Runs all the test suites sequentially
+# Generates individual output files
+
 import os
 
 for index in range(1,11):
