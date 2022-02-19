@@ -1,3 +1,14 @@
 filepath: ./LexerTests/Test-8/input8.lwj
 LINE    LEXEME                  TOKEN ID    TOKEN           
 
+1       strin                   9           KEYWD_STRING    
+1       Acknowledgements        69          IDENTIFIER      
+1       =                       51          SYM_ASSIGN      
+Traceback (most recent call last):
+  File "/home/amogh/Documents/VS Code/compiler-construction-project/Parser.py", line 19, in <module>
+    main()
+  File "/home/amogh/Documents/VS Code/compiler-construction-project/Parser.py", line 12, in main
+    token = lexer.getNextToken()
+  File "/home/amogh/Documents/VS Code/compiler-construction-project/Lexer.py", line 221, in getNextToken
+    raise Exception(f"Expected a closing \" in line {self.lineNum}, not found")
+Exception: Expected a closing " in line 1, not found
