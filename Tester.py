@@ -1,8 +1,11 @@
 import os
 
-#currentPath = os.getcwd()
+for index in range(1,11):
+    testNumber = str(index)
 
-for testNumber in ['1','2','3','4','5']:
-  
-    os.system('python3 Parser.py ' + os.path.join('./LexerTests','Test-'+testNumber,'input'+testNumber+'.lwj'))
+    testFolderPath = './LexerTests/Test-'+testNumber+"/"
     
+    inputPath = testFolderPath + 'input'+testNumber+'.lwj'
+    outputPath = testFolderPath + 'output'+testNumber+'.txt'
+
+    os.system('python3 Parser.py ' + inputPath + " > " + outputPath + " 2>&1")

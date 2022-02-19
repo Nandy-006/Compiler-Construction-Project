@@ -1,14 +1,14 @@
-funkshun array<intijur> sort(array<intijur>a, intijur n) { // function to sort
+funkshun array<intijur> sort(array<intijur>a, intijur n) { # function to sort
     intijur i, j;
     let i = 0;
-    whil(i<n) { // outer loop
+    whil(i<n) { # outer loop
         j=i+1;
         intijur min, pos=i;
         let min=a[i];
-        whil(j<n) { // inner loop
-            /*
+        whil(j<n) { # inner loop
+            `
                 find smallest element after position i and swap it with position i
-            */
+            `
             if(min>a[j]) {
                 min=a[j];
                 pos=j;

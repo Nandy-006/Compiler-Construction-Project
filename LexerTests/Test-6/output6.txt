@@ -1,0 +1,12 @@
+filepath: ./LexerTests/Test-6/input6.lwj
+LINE    LEXEME                  TOKEN ID    TOKEN           
+
+1       intijur                 6           KEYWD_INT       
+Traceback (most recent call last):
+  File "/home/amogh/Documents/VS Code/compiler-construction-project/Parser.py", line 19, in <module>
+    main()
+  File "/home/amogh/Documents/VS Code/compiler-construction-project/Parser.py", line 12, in main
+    token = lexer.getNextToken()
+  File "/home/amogh/Documents/VS Code/compiler-construction-project/Lexer.py", line 144, in getNextToken
+    raise Exception(f"Invalid lexeme {lexeme+char} in line {self.lineNum}")
+Exception: Invalid lexeme 7d in line 1
