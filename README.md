@@ -1,4 +1,4 @@
-<center ><h1 style="text-decoration:none;"> 
+<h1 align="center" style="text-decoration:none;"> 
     <b>CS F363 Compiler Construction</b>
     <br>
     Programming Assignment
