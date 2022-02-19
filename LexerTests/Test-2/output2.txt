@@ -1,4 +1,3 @@
-filepath: ./LexerTests/Test-2/input2.lwj
 LINE    LEXEME                  TOKEN ID    TOKEN           
 
 1       funkshun                10          KEYWD_FUNCTION  
@@ -18,11 +17,6 @@ LINE    LEXEME                  TOKEN ID    TOKEN
 1       n                       69          IDENTIFIER      
 1       )                       35          SYM_CL_PAR      
 1       {                       32          SYM_OP_CURLY    
-1       /                       43          SYM_SLASH       
-1       /                       43          SYM_SLASH       
-1       function                69          IDENTIFIER      
-1       to                      69          IDENTIFIER      
-1       sort                    69          IDENTIFIER      
 2       intijur                 6           KEYWD_INT       
 2       i                       69          IDENTIFIER      
 2       ,                       39          SYM_COMMA       
@@ -40,10 +34,6 @@ LINE    LEXEME                  TOKEN ID    TOKEN
 4       n                       69          IDENTIFIER      
 4       )                       35          SYM_CL_PAR      
 4       {                       32          SYM_OP_CURLY    
-4       /                       43          SYM_SLASH       
-4       /                       43          SYM_SLASH       
-4       outer                   69          IDENTIFIER      
-4       loop                    69          IDENTIFIER      
 5       j                       69          IDENTIFIER      
 5       =                       51          SYM_ASSIGN      
 5       i                       69          IDENTIFIER      
@@ -72,26 +62,6 @@ LINE    LEXEME                  TOKEN ID    TOKEN
 8       n                       69          IDENTIFIER      
 8       )                       35          SYM_CL_PAR      
 8       {                       32          SYM_OP_CURLY    
-8       /                       43          SYM_SLASH       
-8       /                       43          SYM_SLASH       
-8       inner                   69          IDENTIFIER      
-8       loop                    69          IDENTIFIER      
-9       /                       43          SYM_SLASH       
-9       *                       42          SYM_ASTERISK    
-10      find                    69          IDENTIFIER      
-10      smallest                69          IDENTIFIER      
-10      element                 69          IDENTIFIER      
-10      after                   69          IDENTIFIER      
-10      position                69          IDENTIFIER      
-10      i                       69          IDENTIFIER      
-10      and                     69          IDENTIFIER      
-10      swap                    69          IDENTIFIER      
-10      it                      69          IDENTIFIER      
-10      with                    69          IDENTIFIER      
-10      position                69          IDENTIFIER      
-10      i                       69          IDENTIFIER      
-11      *                       42          SYM_ASTERISK    
-11      /                       43          SYM_SLASH       
 12      if                      1           KEYWD_IF        
 12      (                       34          SYM_OP_PAR      
 12      min                     69          IDENTIFIER      

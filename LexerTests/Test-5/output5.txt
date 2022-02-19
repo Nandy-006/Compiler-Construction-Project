@@ -1,3 +1,2 @@
-filepath: ./LexerTests/Test-5/input5.lwj
 LINE    LEXEME                  TOKEN ID    TOKEN           
 

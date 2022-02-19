@@ -1,15 +1,5 @@
-filepath: ./LexerTests/Test-1/input1.lwj
 LINE    LEXEME                  TOKEN ID    TOKEN           
 
-1       /                       43          SYM_SLASH       
-1       *                       42          SYM_ASTERISK    
-1       A                       69          IDENTIFIER      
-1       program                 69          IDENTIFIER      
-1       to                      69          IDENTIFIER      
-1       compute                 69          IDENTIFIER      
-1       factorials              69          IDENTIFIER      
-1       *                       42          SYM_ASTERISK    
-1       /                       43          SYM_SLASH       
 2       funkshun                10          KEYWD_FUNCTION  
 2       intijur                 6           KEYWD_INT       
 2       fact                    69          IDENTIFIER      

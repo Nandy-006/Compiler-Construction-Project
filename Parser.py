@@ -1,3 +1,5 @@
+# Driver code which calls the lexer to get tokens
+
 import sys
 from Lexer import Lexer
 from Utils import checkFile

@@ -1,0 +1,6 @@
+# Crypto is so fun this sem! Langwej 
+
+intijur key = 235
+intijur plaintext = 129
+intijur otp = 235 ^ 129
+

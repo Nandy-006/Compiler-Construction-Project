@@ -1,4 +1,6 @@
-from operator import le
+# Lexer reads the source code character by character
+# It tokenizes the source code by traversing the DFA (refer Langwej-DFA.png)
+
 import re
 from Dictionary import DELIMITERS, KEYWORDS, SYMBOLS, TOKENS, STATES
 
@@ -11,27 +13,30 @@ class Lexer():
         self.newLine = True
 
         with open(self.path, "r") as f:
-            self.processed = f.read()
-        self.processed += '\n'
+            self.code = f.read()
+        self.code += '\n'
 
+    # Gets the next character from the input stream
     def getChar(self):
         if self.newLine:
             self.lineNum += 1
             self.newLine = False
-        if self.charIndex+1 < len(self.processed):
+        if self.charIndex+1 < len(self.code):
             self.charIndex += 1
-            if self.processed[self.charIndex] == "\n":
+            if self.code[self.charIndex] == "\n":
                 self.newLine = True
-            return self.processed[self.charIndex]
+            return self.code[self.charIndex]
         return None
 
+    # Adds the last read character back to the input stream
     def retract(self):
         self.charIndex -= 1
         self.newLine = False
         if self.charIndex < -1:
             raise Exception("Invalid retract")
 
-    def getNextToken(self): # (Line, Lexeme, Token id, Token)
+    # Returns the next token in the format: (Line, Lexeme, Token id, Token)
+    def getNextToken(self): 
         lexeme = ""
         state = STATES.EMPTY_LEXEME
 
