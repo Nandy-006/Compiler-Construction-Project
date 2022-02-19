@@ -1,4 +1,3 @@
-filepath: ./LexerTests/Test-2/input2.lwj
 LINE    LEXEME                  TOKEN ID    TOKEN           
 
 1       funkshun                10          KEYWD_FUNCTION  

@@ -1,4 +1,3 @@
-filepath: ./LexerTests/Test-7/input7.lwj
 LINE    LEXEME                  TOKEN ID    TOKEN           
 
 1       array                   11          KEYWD_ARRAY     
@@ -13,10 +12,10 @@ LINE    LEXEME                  TOKEN ID    TOKEN
 1       'b'                     66          LITERAL_CHAR    
 1       ,                       39          SYM_COMMA       
 Traceback (most recent call last):
-  File "/home/amogh/Documents/VS Code/compiler-construction-project/Parser.py", line 19, in <module>
+  File "/home/amogh/Documents/VS Code/compiler-construction-project/Parser.py", line 21, in <module>
     main()
-  File "/home/amogh/Documents/VS Code/compiler-construction-project/Parser.py", line 12, in main
+  File "/home/amogh/Documents/VS Code/compiler-construction-project/Parser.py", line 14, in main
     token = lexer.getNextToken()
-  File "/home/amogh/Documents/VS Code/compiler-construction-project/Lexer.py", line 213, in getNextToken
+  File "/home/amogh/Documents/VS Code/compiler-construction-project/Lexer.py", line 218, in getNextToken
     raise Exception(f"Expected char to contain a single character in line {self.lineNum}, found {lexeme+char} instead")
 Exception: Expected char to contain a single character in line 1, found 'c] instead

@@ -1,14 +1,13 @@
-filepath: ./LexerTests/Test-10/input10.lwj
 LINE    LEXEME                  TOKEN ID    TOKEN           
 
 1       flote                   7           KEYWD_FLOAT     
 1       average_placement_package69          IDENTIFIER      
 1       =                       51          SYM_ASSIGN      
 Traceback (most recent call last):
-  File "/home/amogh/Documents/VS Code/compiler-construction-project/Parser.py", line 19, in <module>
+  File "/home/amogh/Documents/VS Code/compiler-construction-project/Parser.py", line 21, in <module>
     main()
-  File "/home/amogh/Documents/VS Code/compiler-construction-project/Parser.py", line 12, in main
+  File "/home/amogh/Documents/VS Code/compiler-construction-project/Parser.py", line 14, in main
     token = lexer.getNextToken()
-  File "/home/amogh/Documents/VS Code/compiler-construction-project/Lexer.py", line 151, in getNextToken
+  File "/home/amogh/Documents/VS Code/compiler-construction-project/Lexer.py", line 156, in getNextToken
     raise Exception(f"Expected a decimal to follow {lexeme} in line {self.lineNum}, found {char} instead")
 Exception: Expected a decimal to follow 1. in line 1, found e instead
