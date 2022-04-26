@@ -4,6 +4,20 @@ import sys
 from Lexer import Lexer
 from Utils import checkFile
 
+class Parser():
+
+    def __init__(self):
+        pass
+    
+    def parse(self, filepath):
+        pass
+
+    def shift(self):
+        pass
+
+    def reduce(self):
+        pass
+
 def main():
     filepath = sys.argv[1]
     checkFile(filepath)

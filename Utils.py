@@ -6,3 +6,19 @@ def checkFile(filepath):
         return None
     else:
         raise Exception("Not a Langwej file")
+
+class Stack:
+    def __init__(self, stack = []):
+        self.stack = stack
+        self.size = 0
+    
+    def push(self, item):
+        self.stack.append(item)
+        self.size += 1
+    
+    def pop(self):
+        self.size -= 1
+        return self.stack.pop()
+    
+    def print(self):
+        print(self.stack)
