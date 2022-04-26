@@ -1,3 +1,6 @@
 __pycache__
 input.lwj
-output.txt
+*.txt
+*.ipynb_checkpoints
+*.ipynb
+test.*

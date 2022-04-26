@@ -10,15 +10,28 @@ def checkFile(filepath):
 class Stack:
     def __init__(self, stack = []):
         self.stack = stack
-        self.size = 0
+        self.size = len(stack)
+    
+    def top(self):
+        if self.size == 0:
+            raise Exception("Stack is empty")
+        return self.stack[0]
     
     def push(self, item):
-        self.stack.append(item)
+        self.stack.insert(0, item)
         self.size += 1
     
     def pop(self):
+        if self.size == 0:
+            raise Exception("Stack is empty")
         self.size -= 1
-        return self.stack.pop()
+        return self.stack.pop(0)
     
-    def print(self):
-        print(self.stack)
+    def getStack(self, single=True):
+        if not single:
+            return self.stack
+        else:
+            return [x[0] if isinstance(x, tuple) else x for x in self.stack]
+    
+    def print(self, single=True):
+        print(self.getStack(single))
