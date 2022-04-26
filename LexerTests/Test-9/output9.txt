@@ -13,10 +13,10 @@ LINE    LEXEME                  TOKEN ID    TOKEN
 5       =                       51          SYM_ASSIGN      
 5       235                     64          LITERAL_INT     
 Traceback (most recent call last):
-  File "/home/amogh/Documents/VS Code/compiler-construction-project/Parser.py", line 21, in <module>
+  File "C:\Users\Chandra Vamsi\Desktop\Vamsi\BPHC\Sem-6 (2021-2022)\CS F363 (Compiler Construction)\Assignment\compiler-construction-project\Parser.py", line 21, in <module>
     main()
-  File "/home/amogh/Documents/VS Code/compiler-construction-project/Parser.py", line 14, in main
+  File "C:\Users\Chandra Vamsi\Desktop\Vamsi\BPHC\Sem-6 (2021-2022)\CS F363 (Compiler Construction)\Assignment\compiler-construction-project\Parser.py", line 14, in main
     token = lexer.getNextToken()
-  File "/home/amogh/Documents/VS Code/compiler-construction-project/Lexer.py", line 92, in getNextToken
+  File "C:\Users\Chandra Vamsi\Desktop\Vamsi\BPHC\Sem-6 (2021-2022)\CS F363 (Compiler Construction)\Assignment\compiler-construction-project\Lexer.py", line 92, in getNextToken
     raise Exception(f"Invalid character {char} in line {self.lineNum}")
 Exception: Invalid character ^ in line 5
