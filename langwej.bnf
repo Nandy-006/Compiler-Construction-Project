@@ -40,8 +40,7 @@ returnStatement ::= "retun" expression | arrayExpression ";"
 expression ::= term (operator term)*
 arrayExpression ::= "[" ( expression ("," expression)* )? "]"
 
-functionDefinition ::= dataType "funkshun" functionName "(" parameterList ")" 
-                    { statement* returnStatement }
+functionDefinition ::= dataType "funkshun" functionName "(" parameterList ")" { statement* returnStatement }
 parameterList ::= ( dataType identifier ("," dataType identifier)* )?
 functionCall ::= functionName ( ( term ("," term)* )? ) ";"
 functionName ::= identifier
