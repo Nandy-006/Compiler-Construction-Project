@@ -4,10 +4,10 @@ LINE    LEXEME                  TOKEN ID    TOKEN
 1       Acknowledgements        69          IDENTIFIER      
 1       =                       51          SYM_ASSIGN      
 Traceback (most recent call last):
-  File "/home/amogh/Documents/VS Code/compiler-construction-project/Parser.py", line 21, in <module>
+  File "C:\Users\Chandra Vamsi\Desktop\Vamsi\BPHC\Sem-6 (2021-2022)\CS F363 (Compiler Construction)\Assignment\compiler-construction-project\Parser.py", line 21, in <module>
     main()
-  File "/home/amogh/Documents/VS Code/compiler-construction-project/Parser.py", line 14, in main
+  File "C:\Users\Chandra Vamsi\Desktop\Vamsi\BPHC\Sem-6 (2021-2022)\CS F363 (Compiler Construction)\Assignment\compiler-construction-project\Parser.py", line 14, in main
     token = lexer.getNextToken()
-  File "/home/amogh/Documents/VS Code/compiler-construction-project/Lexer.py", line 226, in getNextToken
+  File "C:\Users\Chandra Vamsi\Desktop\Vamsi\BPHC\Sem-6 (2021-2022)\CS F363 (Compiler Construction)\Assignment\compiler-construction-project\Lexer.py", line 226, in getNextToken
     raise Exception(f"Expected a closing \" in line {self.lineNum}, not found")
 Exception: Expected a closing " in line 1, not found
