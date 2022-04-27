@@ -15,7 +15,7 @@
 
 ### Running the compiler:
 
-```bash
+```
 usage: python3 compile.py [-h] [--tokenize] [--parseOnly] [--tokenPath TOKENPATH] [--stackPath STACKPATH] [--ICPath ICPATH] filepath
 
 Langwej frontend compiler.
