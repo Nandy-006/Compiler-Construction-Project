@@ -63,6 +63,11 @@ class Parser():
                     nextToken = lexer.getNextToken()
                     if nextToken is not None:
                         self.tokenTable.append(nextToken)
+                elif cell == "e1":
+                    print("[SYNTAX ERROR]: Imbalanced braces")
+                    nextToken = lexer.getNextToken()
+                    if nextToken is not None:
+                        self.tokenTable.append(nextToken)
                 elif cell == "ee":
                     print("[SYNTAX ERROR]: PANIC MODE INITIATED")
                     nextToken = lexer.getNextToken()
