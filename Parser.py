@@ -9,8 +9,9 @@ TOKEN_HEADERS = ["LINE", "LEXEME", "TOKEN ID", "TOKEN"]
 STACK_HEADERS = ["INPUT", "STACK", "ACTION"]
 IC_HEADERS = ["OPERATOR", "ARG1", "ARG2", "RESULT"]
 
+# Parser class to parse the langwej program
 class Parser():
-    def __init__(self):
+    def __init__(self, tokenPath, stackPath, ICPath):
         self.pt = pd.read_csv("parse_table.csv")
         self.actions = list(self.pt.columns[:45])
         self.goto = list(self.pt.columns[45:])
@@ -21,22 +22,26 @@ class Parser():
         self.stackTable = []
         self.ICTable = []
 
+        self.tokenPath = tokenPath
+        self.stackPath = stackPath
+        self.ICPath = ICPath
+
+        self.parsable = None
+
         with open("langwej.cfg", "r") as f:
             self.rules = [x.strip() for x in f.read().split("\n") if len(x.strip()) > 0]
     
-    def tokenize(self, filepath, printTokens=False):
+    def tokenize(self, filepath):
         checkFile(filepath)
         lexer = Lexer(filepath)
         nextToken = lexer.getNextToken()
         while nextToken is not None:
             self.tokenTable.append(nextToken)
             nextToken = lexer.getNextToken()
-        if printTokens:
-            print(tabulate(self.tokenTable, headers=TOKEN_HEADERS))
-        with open("parseTokens.txt", "w") as f:
+        with open(self.tokenPath, "w") as f:
             f.write(tabulate(self.tokenTable, headers=TOKEN_HEADERS))
     
-    def parse(self, filepath, printTokens=False, printStack=False, printIC=False):
+    def parse(self, filepath, parseOnly=False):
         checkFile(filepath)
         lexer = Lexer(filepath)
 
@@ -45,7 +50,7 @@ class Parser():
 
         while True:
             if nextToken is not None:
-                _, lexeme, _, token = nextToken
+                lineNum, lexeme, _, token = nextToken
             else:
                 _, lexeme, _, token = ("_", "$", "_", "END")
                 
@@ -59,17 +64,17 @@ class Parser():
             if cell[0] == "e":
                 self.parsable = False
                 if cell == "e0":
-                    print("[SYNTAX ERROR]: Imbalanced parantheses")
+                    print(f"[SYNTAX ERROR: {lineNum}]: Imbalanced parantheses")
                     nextToken = lexer.getNextToken()
                     if nextToken is not None:
                         self.tokenTable.append(nextToken)
                 elif cell == "e1":
-                    print("[SYNTAX ERROR]: Imbalanced braces")
+                    print(f"[SYNTAX ERROR: {lineNum}]: Imbalanced braces")
                     nextToken = lexer.getNextToken()
                     if nextToken is not None:
                         self.tokenTable.append(nextToken)
                 elif cell == "ee":
-                    print("[SYNTAX ERROR]: PANIC MODE INITIATED")
+                    print(f"[SYNTAX ERROR: {lineNum}]: PANIC MODE INITIATED")
                     nextToken = lexer.getNextToken()
                     while nextToken is not None:
                         self.tokenTable.append(nextToken)
@@ -101,28 +106,23 @@ class Parser():
                     self.tokenTable.append(nextToken)
             elif cell[0] == "r":
                 self.stackTable.append((next, self.stack.getStack(), f"REDUCE {int(float(cell[1:]))}"))
-                self.reduce(int(float(cell[1:])))
+                self.reduce(int(float(cell[1:])), parseOnly)
             else:
                 raise Exception("Invalid stack")
         
-        if printTokens:
-            print(tabulate(self.tokenTable, headers=TOKEN_HEADERS))
-        with open("parseTokens.txt", "w") as f:
+        with open(self.tokenPath, "w") as f:
             f.write(tabulate(self.tokenTable, headers=TOKEN_HEADERS))
-        
-        if printStack:
-            print(tabulate(self.stackTable, headers=STACK_HEADERS))
-        with open("parseStack.txt", "w") as f:
+
+        with open(self.stackPath, "w") as f:
             f.write(tabulate(self.stackTable, headers=STACK_HEADERS))
             f.write(f"\n\nValid: {self.parsable}")
 
-        self.ICTable = self.ICStack.top().code
-        if printIC:
-            print(tabulate(self.ICTable, headers=IC_HEADERS))
-        with open("parseIC.txt", "w") as f:
-            if not self.parsable:
-                f.write("Note: Syntax errors were found. Intermediate code maybe unreliable.\n\n")
-            f.write(tabulate(self.ICTable, headers=IC_HEADERS))
+        if not parseOnly:
+            self.ICTable = self.ICStack.top().code
+            with open(self.ICPath, "w") as f:
+                if not self.parsable:
+                    f.write("Note: Syntax errors were found. Intermediate code maybe unreliable.\n\n")
+                f.write(tabulate(self.ICTable, headers=IC_HEADERS))
 
         return self.parsable
 
@@ -131,7 +131,7 @@ class Parser():
         self.ICStack.push(ICVar(next[1]))
         self.stack.push(index)
 
-    def reduce(self, index):
+    def reduce(self, index, parseOnly):
         rule = self.rules[index].split(" ")
         if index == 1 or index == 4:
             popCount = 0
@@ -139,10 +139,12 @@ class Parser():
             popCount = len(rule[2:])
         for _ in range(2*popCount):
             self.stack.pop()
-        popped = []
-        for _ in range(popCount):
-            popped.insert(0, self.ICStack.pop())
+        if not parseOnly:
+            popped = []
+            for _ in range(popCount):
+                popped.insert(0, self.ICStack.pop())
         goto = self.stack.top()
         self.stack.push((rule[0], rule[0]))
-        self.ICStack.push(getICVar(index, popped))
+        if not parseOnly:
+            self.ICStack.push(getICVar(index, popped))
         self.stack.push(int(float(self.pt.loc[goto][rule[0]])))

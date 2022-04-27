@@ -1,6 +1,4 @@
-from pandas import concat
-
-
+# Utility class that creates variables for Intermediate Code Generation
 class ICVar:
     tcount = 0
     lcount = 0
@@ -26,8 +24,8 @@ def IC_copy(E):
 def IC_concat(E1, E2):
     return ICVar("", E1.code + E2.code)
 
+# Implements various routines to get intermediate code based on reduction rules. [Check rules.txt for rules corresponding to numbers]
 def getICVar(ruleIndex, popped):
-    # import pdb; pdb.set_trace()
     if ruleIndex in [0, 18, 20, 23, 39, 46, 47, 53, 54, 55, 56, 57, 58, 60, 80, 90]:
         return IC_copy(popped[0])
     elif ruleIndex in [1, 4, 59, 67, 68]:
@@ -80,7 +78,6 @@ def getICVar(ruleIndex, popped):
             ("LABEL", L1, None, None)
         ])
     elif ruleIndex in [72]:
-        # [print(var) for var in popped]
         L1 = ICVar.getNewLabel()
         L2 = ICVar.getNewLabel()
         return ICVar("", popped[2].code + [
@@ -93,7 +90,6 @@ def getICVar(ruleIndex, popped):
         ])
     elif ruleIndex in [78]:
         res = ICVar()
-        # print(res.temp)
         res.code = popped[0].code + popped[2].code + [(popped[1].temp, popped[0].temp, popped[2].temp, res.temp)]
         return res
     elif ruleIndex in [79]:
@@ -110,4 +106,4 @@ def getICVar(ruleIndex, popped):
         ]
         return res
     else:
-        return ICVar("", ["Rule not an expression or conditional"])
+        return ICVar("", [("Rule not an expression or conditional", None, None, None)])

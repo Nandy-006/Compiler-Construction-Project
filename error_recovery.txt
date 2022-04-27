@@ -26,7 +26,7 @@ II) Missing identifier before '=' (error code: e1)
         3.  Continue parsing
 
 
-III)Panic mode recovery (error code: ee)
+III) Panic mode recovery (error code: ee)
 
     Recovery Method (perform the following steps when the parser reaches a cell whose value = ee):
         1.  Report syntax error
