@@ -7,6 +7,7 @@ def checkFile(filepath):
     else:
         raise Exception("Not a Langwej file")
 
+# Stack implementation
 class Stack:
     def __init__(self, stack = []):
         self.stack = stack
