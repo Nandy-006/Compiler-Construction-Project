@@ -1,0 +1,100 @@
+0 program -> funcOrStatement
+1 program -> ''
+2 funcOrStatement -> functionDefinition funcOrStatement
+3 funcOrStatement -> statement funcOrStatement
+4 funcOrStatement -> ''
+5 arithmeticOperator -> +
+6 arithmeticOperator -> -
+7 arithmeticOperator -> *
+8 arithmeticOperator -> /
+9 arithmeticOperator -> %
+10 relationalOperator -> >
+11 relationalOperator -> <
+12 relationalOperator -> >=
+13 relationalOperator -> <=
+14 relationalOperator -> ==
+15 relationalOperator -> !=
+16 logicalOperator -> ||
+17 logicalOperator -> &&
+18 operator -> arithmeticOperator
+19 functionName -> IDENTIFIER
+20 operator -> logicalOperator
+21 constant -> LITERAL_INT
+22 constant -> LITERAL_FLOAT
+23 constant -> booleanConstant
+24 constant -> LITERAL_STRING
+25 constant -> LITERAL_CHAR
+26 constant -> null
+27 booleanConstant	-> stonks
+28 booleanConstant	-> not_stonks
+29 arrayConstant -> [ ]
+30 arrayConstant -> [ term commaConst ]
+31 arrayConstant -> [ term ]
+32 commaConst -> , term commaConst
+33 commaConst -> , term
+34 dataType -> intijur
+35 dataType -> flote
+36 dataType -> bulen
+37 dataType -> strin
+38 dataType -> char
+39 dataType -> arrayType
+40 arrayType -> array < elementType >
+41 elementType -> flote
+42 elementType -> bulen
+43 elementType -> strin
+44 elementType -> intijur
+45 varName -> IDENTIFIER
+46 term -> constant
+47 term -> varName
+48 term -> varName [ expression ]
+49 term -> ( expression )
+50 term -> functionCall
+51 term -> ! term
+52 term -> - term
+53 statement -> declarationStatement
+54 statement -> letStatement
+55 statement -> ifStatement
+56 statement -> whileStatement
+57 statement -> callStatement
+58 statement -> returnStatement
+59 declarationStatement -> dataType declare ;
+60 declare -> varName
+61 declare -> varName = expression
+62 declare -> varName , declare
+63 declare -> varName = expression , declare
+64 letStatement -> let varName [ expression ] = expression ;
+65 letStatement -> let varName = expression ;
+66 letStatement -> let varName = arrayExpression ;
+67 ifStatement -> if ( expression ) { } else { }
+68 ifStatement -> if ( expression ) { }
+69 ifStatement -> if ( expression ) { } else { statements }
+70 ifStatement -> if ( expression ) { statements }
+71 ifStatement -> if ( expression ) { statements } else { }
+72 ifStatement -> if ( expression ) { statements } else { statements }
+73 whileStatement -> whil ( expression ) { statements }
+74 whileStatement -> whil ( expression ) { }
+75 callStatement -> coll functionCall
+76 returnStatement -> retun expression ;
+77 returnStatement -> retun arrayExpression ;
+78 expression -> term operator expression
+79 expression -> term relationalOperator expression
+80 expression -> term
+81 arrayExpression -> [ expression ]
+82 arrayExpression -> [ expression commaExpr ]
+83 commaExpr -> , expression commaExpr
+84 commaExpr -> , expression
+85 functionDefinition -> dataType funkshun functionName ( parameterList ) { statements returnStatement }
+86 functionDefinition -> dataType funkshun functionName ( parameterList ) { returnStatement }
+87 functionDefinition -> dataType funkshun functionName ( ) { statements returnStatement }
+88 functionDefinition -> dataType funkshun functionName ( ) { returnStatement }
+89 statements -> statements statement
+90 statements -> statement
+91 parameterList -> dataType IDENTIFIER commaDataID
+92 parameterList -> dataType IDENTIFIER
+93 commaDataID -> , dataType IDENTIFIER commaDataID
+94 commaDataID -> , dataType IDENTIFIER
+95 functionCall -> functionName ( ) ;
+96 functionCall -> functionName ( term commaTerm ) ;
+97 functionCall -> functionName ( term ) ;
+98 commaTerm -> , term commaTerm
+99 commaTerm -> , term
