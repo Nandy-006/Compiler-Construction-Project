@@ -11,7 +11,7 @@ IC_HEADERS = ["OPERATOR", "ARG1", "ARG2", "RESULT"]
 
 class Parser():
     def __init__(self):
-        self.pt = pd.read_csv("parse_table.csv", header=2).fillna(-1)
+        self.pt = pd.read_csv("parse_table.csv")
         self.actions = list(self.pt.columns[:45])
         self.goto = list(self.pt.columns[45:])
         self.stack = Stack([0, ("$", "END")])
@@ -56,21 +56,47 @@ class Parser():
             
             cell = self.pt.loc[self.stack.top()][next[0]]
 
-            if cell == -1:
+            if cell[0] == "e":
                 self.parsable = False
-                break
+                if cell == "e0":
+                    print("[SYNTAX ERROR]: Imbalanced parantheses")
+                    nextToken = lexer.getNextToken()
+                    if nextToken is not None:
+                        self.tokenTable.append(nextToken)
+                elif cell == "ee":
+                    print("[SYNTAX ERROR]: PANIC MODE INITIATED")
+                    nextToken = lexer.getNextToken()
+                    while nextToken is not None:
+                        self.tokenTable.append(nextToken)
+                        if nextToken in [';','}']:  
+                            break
+                        nextToken = lexer.getNextToken()
+
+                    if nextToken is None:
+                        break
+
+                    while self.stack.top() != 0 and self.pt.loc[self.stack.top()][nextToken][0] != "e":
+                        self.stack.pop()
+                        self.stack.pop()
+                    if self.stack.top() == 0:
+                        nextToken = lexer.getNextToken()
+                        if nextToken is not None:
+                            self.tokenTable.append(nextToken)
+                else:
+                    raise Exception("Invalid error")
             elif cell == "acc":
-                self.parsable = True
+                if self.parsable is None:
+                    self.parsable = True
                 break
             elif cell[0] == "s":
-                self.stackTable.append((next, self.stack.getStack(), f"SHIFT {int(cell[1:])}"))
-                self.shift(int(cell[1:]), next)
+                self.stackTable.append((next, self.stack.getStack(), f"SHIFT {int(float(cell[1:]))}"))
+                self.shift(int(float(cell[1:])), next)
                 nextToken = lexer.getNextToken()
                 if nextToken is not None:
                     self.tokenTable.append(nextToken)
             elif cell[0] == "r":
-                self.stackTable.append((next, self.stack.getStack(), f"REDUCE {int(cell[1:])}"))
-                self.reduce(int(cell[1:]))
+                self.stackTable.append((next, self.stack.getStack(), f"REDUCE {int(float(cell[1:]))}"))
+                self.reduce(int(float(cell[1:])))
             else:
                 raise Exception("Invalid stack")
         
@@ -89,6 +115,8 @@ class Parser():
         if printIC:
             print(tabulate(self.ICTable, headers=IC_HEADERS))
         with open("parseIC.txt", "w") as f:
+            if not self.parsable:
+                f.write("Note: Syntax errors were found. Intermediate code maybe unreliable.\n\n")
             f.write(tabulate(self.ICTable, headers=IC_HEADERS))
 
         return self.parsable
@@ -112,4 +140,4 @@ class Parser():
         goto = self.stack.top()
         self.stack.push((rule[0], rule[0]))
         self.ICStack.push(getICVar(index, popped))
-        self.stack.push(int(self.pt.loc[goto][rule[0]]))
+        self.stack.push(int(float(self.pt.loc[goto][rule[0]])))

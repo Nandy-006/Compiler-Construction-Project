@@ -1,0 +1,43 @@
+Error Recovery Mechanism
+
+I)  Missing operand (error code: e0)
+    
+    Examples:
+        let IDENTIFIER = LITERAL_INT * (IDENTIFIER - );
+        let IDENTIFIER = IDENTIFIER + ;
+
+    Recovery Method (perform the following steps when the parser reaches a cell whose value = e0):
+        1.  Report the error (missing operand)
+        2.  Push IDENTIFIER onto the stack
+        3.  Push 51 (state) onto the stack
+        4.  Continue parsing
+
+
+II) Missing identifier before '=' (error code: e1)
+
+    Examples:
+        intjur = LITERAL_INT;
+        let = IDENTIFIER * LITERAL_FLOAT;
+
+    Recovery Method (perform the following steps when the parser reaches a cell whose value = e1):
+        1.  Report the error (missing identifier)
+        2.  Push IDENTIFIER onto the stack
+        3.  Push 28 (state) onto the stack
+        3.  Continue parsing
+
+
+III)Panic mode recovery (error code: ee)
+
+    Recovery Method (perform the following steps when the parser reaches a cell whose value = ee):
+        1.  Report syntax error
+        2.  If there are no more tokens remaining, finish parsing
+            Else, suppose the next token is T. While T is not ';' or '}', skip T and get the token after T if exists (end parsing if no more tokens remain)
+        3.  If parser reaches here, it means that the next token, T is either ';' or '}'
+            while S != 0 and pt[S, T] is not an error: (S is the top of stack)
+                pop from stack twice
+
+            if S is 0:
+                skip T (T is ';' or '}' here)
+            else:
+                take parser to pt[S, T] and continue parsing
+
