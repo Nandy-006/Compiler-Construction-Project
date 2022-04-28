@@ -48,9 +48,9 @@ whil (a > b) { a = a + 1); }
 
 <b>Recovery Method:</b>
 <ol>
-<li>Report the error</li>
-<li>Skip the closing parenthesis and get the next token</li>
-<li>Continue Parsing</li>
+<li>Report the error.</li>
+<li>Skip the closing parenthesis and get the next token.</li>
+<li>Continue parsing.</li>
 </ol>
 
 ### 2. Error recovery for extra closing brace (error code e1):
@@ -65,9 +65,9 @@ intijur funkshun recursion () {coll recursion();}}
 
 <b>Recovery Method:</b>
 <ol>
-<li>Report the error</li>
-<li>Skip the closing brace and get the next token</li>
-<li>Continue Parsing</li>
+<li>Report the error.</li>
+<li>Skip the closing brace and get the next token.</li>
+<li>Continue parsing.</li>
 </ol>
 
 ### 3. Panic Mode Recovery:
@@ -75,9 +75,23 @@ Any error that is not handled by the above recovery methods will be handled by p
 
 <b>Recovery Method:</b>
 <ol>
-<li>Report syntax error</li>
-<li>If there are no more tokens remaining, finish parsing<br>Else, suppose the next token is T. While T is not ';' or '}', skip T and get the token after T if exists</li>
-<li>If parser reaches here, it means that the next token, T is either ';' or '}'</li>
+<li>Report syntax error.</li>
+
+
+<li><code>T</code> is the next token in the input.</li>
+
+```
+if nextToken does not exist:
+    finish parsing
+else: 
+    while T is not ';' or '}':
+        skip T and get the token after T if exists
+```
+
+
+<li>If parser reaches here, it means that the next token, <code>T</code> is either <code>;</code> or <code>}</code>
+<br><code>S</code> is the current top of the stack.
+<br><code>pt[S, T]</code> corresponds to the cell in the parse table with <code>S</code> as the top of stack and <code>T</code> as the next token in the input.</li>
 
 ```
 while S is not 0 and pt[S, T] is not an error:
@@ -88,3 +102,5 @@ while S is not 0 and pt[S, T] is not an error:
         leave panic mode and continue parsing
 ```
 </ol>
+
+
