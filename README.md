@@ -13,7 +13,7 @@
 
 <br>
 
-### Running the compiler:
+## Running the compiler:
 
 ```
 usage: python3 compile.py [-h] [--tokenize] [--parseOnly] [--tokenPath TOKENPATH] [--stackPath STACKPATH] [--ICPath ICPATH] filepath
@@ -34,8 +34,57 @@ optional arguments:
   --ICPath ICPATH       Specifies the path where intermediate code generated is written, defaults to parseIC.txt
 ```
 
-### Running Tests:
+## Error Recovery for Parser:
 
-```bash
-python3 Tester.py
+### 1. Error recovery for extra closing parenthesis (error code e0):
+
+<b>Examples</b>:
 ```
+let x = (a + b));
+               ^
+whil (a > b) { a = a + 1); }
+                        ^
+```
+
+<b>Recovery Method:</b>
+<ol>
+<li>Report the error</li>
+<li>Skip the closing parenthesis and get the next token</li>
+<li>Continue Parsing</li>
+</ol>
+
+### 2. Error recovery for extra closing brace (error code e1):
+
+<b>Examples</b>:
+```
+if (a > b) { a = a + 1; }} else { a = a - 1; }
+                         ^
+intijur funkshun recursion () {coll recursion();}}
+                                                 ^
+```
+
+<b>Recovery Method:</b>
+<ol>
+<li>Report the error</li>
+<li>Skip the closing brace and get the next token</li>
+<li>Continue Parsing</li>
+</ol>
+
+### 3. Panic Mode Recovery:
+Any error that is not handled by the above recovery methods will be handled by panic mode recovery.
+
+<b>Recovery Method:</b>
+<ol>
+<li>Report syntax error</li>
+<li>If there are no more tokens remaining, finish parsing<br>Else, suppose the next token is T. While T is not ';' or '}', skip T and get the token after T if exists</li>
+<li>If parser reaches here, it means that the next token, T is either ';' or '}'</li>
+
+```
+while S is not 0 and pt[S, T] is not an error:
+    pop from stack twice
+    if S is 0:
+        skip T
+    else:
+        leave panic mode and continue parsing
+```
+</ol>

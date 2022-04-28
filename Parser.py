@@ -65,7 +65,7 @@ class Parser():
             if cell[0] == "e":
                 self.parsable = False
                 if cell == "e0":
-                    print(f"[SYNTAX ERROR: {lineNum}]: Unexpected closing parentheses ')'")
+                    print(f"[SYNTAX ERROR: {lineNum}]: Unexpected closing parenthesis ')'")
                     nextToken = lexer.getNextToken()
                     if nextToken is not None:
                         self.tokenTable.append(nextToken)
