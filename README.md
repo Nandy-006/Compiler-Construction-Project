@@ -70,7 +70,7 @@ intijur funkshun recursion () {coll recursion();}}
 <li>Continue parsing.</li>
 </ol>
 
-### 3. Panic Mode Recovery:
+### 3. Panic Mode Recovery (error code ee):
 Any error that is not handled by the above recovery methods will be handled by panic mode recovery.
 
 <b>Recovery Method:</b>
