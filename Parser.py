@@ -49,6 +49,7 @@ class Parser():
         self.tokenTable.append(nextToken)
 
         while True:
+            # import pdb; pdb.set_trace()
             if nextToken is not None:
                 lineNum, lexeme, _, token = nextToken
             else:
@@ -64,28 +65,28 @@ class Parser():
             if cell[0] == "e":
                 self.parsable = False
                 if cell == "e0":
-                    print(f"[SYNTAX ERROR: {lineNum}]: Imbalanced parantheses")
+                    print(f"[SYNTAX ERROR: {lineNum}]: Unexpected closing parentheses ')'")
                     nextToken = lexer.getNextToken()
                     if nextToken is not None:
                         self.tokenTable.append(nextToken)
                 elif cell == "e1":
-                    print(f"[SYNTAX ERROR: {lineNum}]: Imbalanced braces")
+                    print(f"[SYNTAX ERROR: {lineNum}]: Unexpected closing braces '}}'")
                     nextToken = lexer.getNextToken()
                     if nextToken is not None:
                         self.tokenTable.append(nextToken)
                 elif cell == "ee":
-                    print(f"[SYNTAX ERROR: {lineNum}]: PANIC MODE INITIATED")
+                    print(f"[SYNTAX ERROR: {lineNum}]: PANIK MODE INITIATED")
                     nextToken = lexer.getNextToken()
                     while nextToken is not None:
                         self.tokenTable.append(nextToken)
-                        if nextToken in [';','}']:  
+                        if nextToken[1] in [';','}']:  
                             break
                         nextToken = lexer.getNextToken()
 
                     if nextToken is None:
                         break
 
-                    while self.stack.top() != 0 and self.pt.loc[self.stack.top()][nextToken][0] != "e":
+                    while self.stack.top() != 0 and self.pt.loc[self.stack.top()][nextToken[0]] != "e":
                         self.stack.pop()
                         self.stack.pop()
                     if self.stack.top() == 0:

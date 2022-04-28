@@ -43,7 +43,7 @@ def getICVar(ruleIndex, popped):
     elif ruleIndex in [33]:
         return ICVar(code = popped[1].code)
     elif ruleIndex in [49]:
-        return ICVar(code = ICVar(popped[1].temp, popped[1].code))
+        return ICVar(popped[1].temp, popped[1].code)
     elif ruleIndex in [51]:
         res = ICVar()
         res.code = popped[1].code + [("not", popped[1].temp, None, res.temp), ("=", res.temp, None, res.temp)]
