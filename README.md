@@ -94,12 +94,13 @@ else:
 <br><code>pt[S, T]</code> corresponds to the cell in the parse table with <code>S</code> as the top of stack and <code>T</code> as the next token in the input.</li>
 
 ```
-while S is not 0 and pt[S, T] is not an error:
+while S is not 0 and pt[S, T] is an error:
     pop from stack twice
-    if S is 0:
-        skip T
-    else:
-        leave panic mode and continue parsing
+
+if S is 0:
+    skip T and finish parsing
+else:
+    leave panic mode and continue parsing
 ```
 </ol>
 
