@@ -1,0 +1,22 @@
+  LINE  LEXEME         TOKEN ID  TOKEN
+------  -----------  ----------  --------------
+     3  intijur               6  KEYWD_INT
+     3  funkshun             10  KEYWD_FUNCTION
+     3  IDENTIFIER           69  IDENTIFIER
+     3  (                    34  SYM_OP_PAR
+     3  intijur               6  KEYWD_INT
+     3  IDENTIFIER           69  IDENTIFIER
+     3  )                    35  SYM_CL_PAR
+     3  {                    32  SYM_OP_CURLY
+     4  let                  14  KEYWD_LET
+     4  IDENTIFIER           69  IDENTIFIER
+     4  =                    51  SYM_ASSIGN
+     4  LITERAL_INT          69  IDENTIFIER
+     4  *                    42  SYM_ASTERISK
+     4  IDENTIFIER           69  IDENTIFIER
+     4  }                    33  SYM_CL_CURLY
+     4  ;                    38  SYM_SEMICOLON
+     5  retun                 5  KEYWD_RETURN
+     5  IDENTIFIER           69  IDENTIFIER
+     5  ;                    38  SYM_SEMICOLON
+     6  }                    33  SYM_CL_CURLY

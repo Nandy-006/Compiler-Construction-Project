@@ -1,0 +1,14 @@
+# There are so many errors in this program. No way it can parse the entire program
+
+let IDENTIFIER LITERAL_INT;
+intijur IDENTIFIER IDENTIFIER;
+
+funkshun (bulen IDENTIFIER)
+    let IDENTIFIER = stonks;
+    else {
+        IDENTIFIER = not_stonks;
+    }
+    intijur IDENTIFIER;
+}
+
+let IDENTIFIER = IDENTIFIER[LITERAL_FLOAT;

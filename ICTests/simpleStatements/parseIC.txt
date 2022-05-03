@@ -1,0 +1,51 @@
+OPERATOR    ARG1    ARG2    RESULT
+----------  ------  ------  --------
+==          10      5       L1
+=           0               T1
+                            L2
+LABEL       L1
+=           1               T1
+LABEL       L2
+%           x       T1      T2
+==          T2      0       L3
+/           x       5       T3
+=           T3              x
+                            L4
+LABEL       L3
+-           x       2       T4
+=           T4              x
+=           stonks          b
+LABEL       L4
+/           x       15      T5
++           25      T5      T6
+<=          x       T6      L5
+=           0               T7
+                            L6
+LABEL       L5
+=           1               T7
+LABEL       L6
+!=          b       T7      L7
+=           0               T8
+                            L8
+LABEL       L7
+=           1               T8
+LABEL       L8
+==          T8      0       L12
+*           b       10      T9
+*           x       10      T10
+/           T10     4       T11
++           T9      T11     T12
+=           T12             a
+                            L13
+LABEL       L12
+==          c       7.5     L9
+=           0               T13
+                            L10
+LABEL       L9
+=           1               T13
+LABEL       L10
+==          T13     0       L11
+*           b       2.5     T14
+=           T14             a
+LABEL       L11
+LABEL       L13

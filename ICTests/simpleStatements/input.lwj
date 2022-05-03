@@ -1,0 +1,14 @@
+if (x % 10 == 5) {
+    let x = x / 5;
+} else {
+    let x = x - 2;
+    let b = stonks;
+}
+
+if (b != (x <= 25 + (x / 15))) {
+    let a = (b * 10) + (x * 10) / 4;
+} else {
+    if (c == 7.5) {
+        let a = b * 2.5;
+    }
+}

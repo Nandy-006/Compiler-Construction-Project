@@ -1,0 +1,8 @@
+# spent a lot of time trying to find whats wrong with the program but can't find it :/
+
+intijur funkshun IDENTIFIER (strin IDENTIFIER) {
+    array < intijur > IDENTIFIER;
+    let IDENTIFIER[LITERAL_INT] = LITERAL_CHAR;
+    let IDENTIFIER = IDENTIFIER * LITERAL_INT);
+    retun LITERAL_STRING;
+}

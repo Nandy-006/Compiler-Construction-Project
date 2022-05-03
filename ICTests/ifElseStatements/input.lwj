@@ -1,0 +1,5 @@
+if (x == 100) {
+    let y = 50;
+} else {
+    let y = x / 4;
+}

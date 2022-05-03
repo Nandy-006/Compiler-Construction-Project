@@ -1,0 +1,37 @@
+# full program
+
+`---------------------------------------------variable declarations start here---------------------------------------------`
+intijur IDENTIFIER = LITERAL_INT;
+char IDENTIFIER = LITERAL_CHAR;
+array < intijur > IDENTIFIER;
+let IDENTIFIER = [LITERAL_INT, LITERAL_INT * IDENTIFIER, IDENTIFIER + LITERAL_INT / IDENTIFIER, IDENTIFIER];
+`----------------------------------------------variable declarations end here----------------------------------------------`
+
+`--------------------------------------------function implementations start here-------------------------------------------`
+intijur funkshun IDENTIFIER(char IDENTIFIER, intijur IDENTIFIER) {
+    if (IDENTIFIER != LITERAL_CHAR) {
+        retun LITERAL_INT;
+    }
+
+    let IDENTIFIER[LITERAL_INT * IDENTIFIER] = LITERAL_INT - (IDENTIFIER / LITERAL_INT);
+    coll IDENTIFIER((LITERAL_CHAR + IDENTIFIER), (LITERAL_INT * IDENTIFIER));
+    retun IDENTIFIER;
+}
+`---------------------------------------------function implementations end here--------------------------------------------`
+
+`---------------------------------------------------main program-----------------------------------------------------------`
+if (IDENTIFIER[LITERAL_INT] * IDENTIFIER(IDENTIFIER(LITERAL_FLOAT)) >= LITERAL_INT && IDENTIFIER < LITERAL_INT) {
+    bulen IDENTIFIER = !(IDENTIFIER * -LITERAL_FLOAT == LITERAL_FLOAT);
+} else {
+    whil (IDENTIFIER != IDENTIFIER(LITERAL_INT)) {
+        let IDENTIFIER = IDENTIFIER % LITERAL_INT;
+        let IDENTIFIER = IDENTIFIER(LITERAL_CHAR, IDENTIFIER);
+    }
+    
+    if (IDENTIFIER == stonks) {
+        let IDENTIFIER = not_stonks;
+        let IDENTIFIER = LITERAL_CHAR;
+    }
+    let IDENTIFIER = -(IDENTIFIER(LITERAL_CHAR, LITERAL_INT));
+}
+`----------------------------------------------------end program-----------------------------------------------------------`

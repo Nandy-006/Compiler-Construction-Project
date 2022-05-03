@@ -1,0 +1,6 @@
+# I always maintain braces properly in my program. Something is wrong with this compiler ;(
+
+intijur funkshun IDENTIFIER(intijur IDENTIFIER) {
+    let IDENTIFIER = LITERAL_INT * IDENTIFIER};
+    retun IDENTIFIER;
+}

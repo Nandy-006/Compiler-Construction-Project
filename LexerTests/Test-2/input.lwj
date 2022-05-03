@@ -1,0 +1,24 @@
+funkshun array<intijur> sort(array<intijur>a, intijur n) { # function to sort
+    intijur i, j;
+    let i = 0;
+    whil(i<n) { # outer loop
+        j=i+1;
+        intijur min, pos=i;
+        let min=a[i];
+        whil(j<n) { # inner loop
+            `
+                find smallest element after position i and swap it with position i
+            `
+            if(min>a[j]) {
+                min=a[j];
+                pos=j;
+            }
+            j=j+1;
+        }
+        intijur temp;
+        let temp=a[i];
+        a[i]=a[pos];
+        a[pos]=temp;
+        i++;
+    }
+}

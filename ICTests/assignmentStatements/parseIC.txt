@@ -1,0 +1,13 @@
+OPERATOR    ARG1        ARG2    RESULT
+----------  ----------  ------  ---------
+*           7.5         b       T1
+=           T1                  a
+/           c           2       T2
++           a           T2      T3
+=           T3                  b
++           a           b       T4
+/           T4          2       T5
+=           T5                  c
+=           b                   a
+=           stonks              isTrue
+=           not_stonks          isNotTrue

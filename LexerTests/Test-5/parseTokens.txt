@@ -1,0 +1,2 @@
+LINE    LEXEME                  TOKEN ID    TOKEN           
+

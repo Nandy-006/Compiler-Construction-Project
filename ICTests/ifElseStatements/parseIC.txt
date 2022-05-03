@@ -1,0 +1,15 @@
+OPERATOR    ARG1      ARG2  RESULT
+----------  ------  ------  --------
+==          x          100  L1
+=           0               T1
+                            L2
+LABEL       L1
+=           1               T1
+LABEL       L2
+==          T1           0  L3
+=           50              y
+                            L4
+LABEL       L3
+/           x            4  T2
+=           T2              y
+LABEL       L4

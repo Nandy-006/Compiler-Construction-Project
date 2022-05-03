@@ -1,0 +1,17 @@
+strin distinction; let distinction = "you passed with flying colours";
+strin firstclass; let firstclass = "you passed in first class";
+strin fail; let litemax = "you failed";
+
+`
+    program that gives result based on your cgpa
+`
+
+flote cgpa; let cpga=7.9;
+if(cgpa>=9.0) {
+    coll print(distinction);
+} else {
+    if(cgpa>=7) {
+        coll print(firstclass);
+    }
+    else {coll print(fail);}
+}

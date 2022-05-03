@@ -1,0 +1,6 @@
+let a = 7.5 * b;
+let b = a + c / 2;
+let c = (a + b) / 2;
+let a = b;
+let isTrue = stonks;
+let isNotTrue = not_stonks;

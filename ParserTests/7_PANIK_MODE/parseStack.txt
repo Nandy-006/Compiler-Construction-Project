@@ -1,0 +1,28 @@
+INPUT                            STACK                                                                                                  ACTION
+-------------------------------  -----------------------------------------------------------------------------------------------------  ---------
+('let', 'let')                   [0, '$']                                                                                               SHIFT 17
+('IDENTIFIER', 'IDENTIFIER')     [17, 'let', 0, '$']                                                                                    SHIFT 28
+('intijur', 'intijur')           [0, '$']                                                                                               SHIFT 11
+('IDENTIFIER', 'IDENTIFIER')     [11, 'intijur', 0, '$']                                                                                REDUCE 34
+('IDENTIFIER', 'IDENTIFIER')     [4, 'dataType', 0, '$']                                                                                SHIFT 28
+('intijur', 'intijur')           [0, '$']                                                                                               SHIFT 11
+('IDENTIFIER', 'IDENTIFIER')     [11, 'intijur', 0, '$']                                                                                REDUCE 34
+('IDENTIFIER', 'IDENTIFIER')     [4, 'dataType', 0, '$']                                                                                SHIFT 28
+(';', ';')                       [28, 'IDENTIFIER', 4, 'dataType', 0, '$']                                                              REDUCE 45
+(';', ';')                       [27, 'varName', 4, 'dataType', 0, '$']                                                                 REDUCE 60
+(';', ';')                       [26, 'declare', 4, 'dataType', 0, '$']                                                                 SHIFT 56
+('}', '}')                       [56, ';', 26, 'declare', 4, 'dataType', 0, '$']                                                        REDUCE 59
+('}', '}')                       [5, 'declarationStatement', 0, '$']                                                                    REDUCE 53
+('let', 'let')                   [3, 'statement', 0, '$']                                                                               SHIFT 17
+('IDENTIFIER', 'IDENTIFIER')     [17, 'let', 3, 'statement', 0, '$']                                                                    SHIFT 28
+('=', '=')                       [28, 'IDENTIFIER', 17, 'let', 3, 'statement', 0, '$']                                                  REDUCE 45
+('=', '=')                       [29, 'varName', 17, 'let', 3, 'statement', 0, '$']                                                     SHIFT 60
+('IDENTIFIER', 'IDENTIFIER')     [60, '=', 29, 'varName', 17, 'let', 3, 'statement', 0, '$']                                            SHIFT 51
+('[', '[')                       [51, 'IDENTIFIER', 60, '=', 29, 'varName', 17, 'let', 3, 'statement', 0, '$']                          REDUCE 45
+('[', '[')                       [40, 'varName', 60, '=', 29, 'varName', 17, 'let', 3, 'statement', 0, '$']                             SHIFT 85
+('IDENTIFIER', 'LITERAL_FLOAT')  [85, '[', 40, 'varName', 60, '=', 29, 'varName', 17, 'let', 3, 'statement', 0, '$']                    SHIFT 51
+(';', ';')                       [51, 'IDENTIFIER', 85, '[', 40, 'varName', 60, '=', 29, 'varName', 17, 'let', 3, 'statement', 0, '$']  REDUCE 45
+(';', ';')                       [40, 'varName', 85, '[', 40, 'varName', 60, '=', 29, 'varName', 17, 'let', 3, 'statement', 0, '$']     REDUCE 47
+(';', ';')                       [37, 'term', 85, '[', 40, 'varName', 60, '=', 29, 'varName', 17, 'let', 3, 'statement', 0, '$']        REDUCE 80
+
+Valid: False

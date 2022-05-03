@@ -1,0 +1,15 @@
+intijur funkshun IDENTIFIER (array < intijur > IDENTIFIER, intijur IDENTIFIER) {
+    coll IDENTIFIER (IDENTIFIER, IDENTIFIER);
+
+    bulen IDENTIFIER = IDENTIFIER(IDENTIFIER, IDENTIFIER(LITERAL_INT));
+
+    whil (IDENTIFIER(IDENTIFIER, LITERAL_INT) || IDENTIFIER(LITERAL_FLOAT) && !IDENTIFIER) {
+        if (IDENTIFIER() && -LITERAL_INT > LITERAL_INT) {
+            retun LITERAL_INT;
+        } else {
+            let IDENTIFIER = not_stonks;
+        }
+    }
+
+    retun IDENTIFIER;
+}

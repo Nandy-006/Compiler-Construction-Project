@@ -1,0 +1,11 @@
+LINE    LEXEME                  TOKEN ID    TOKEN           
+
+1       intijur                 6           KEYWD_INT       
+Traceback (most recent call last):
+  File "C:\Users\Chandra Vamsi\Desktop\Vamsi\BPHC\Sem-6 (2021-2022)\CS F363 (Compiler Construction)\Assignment\compiler-construction-project\Parser.py", line 21, in <module>
+    main()
+  File "C:\Users\Chandra Vamsi\Desktop\Vamsi\BPHC\Sem-6 (2021-2022)\CS F363 (Compiler Construction)\Assignment\compiler-construction-project\Parser.py", line 14, in main
+    token = lexer.getNextToken()
+  File "C:\Users\Chandra Vamsi\Desktop\Vamsi\BPHC\Sem-6 (2021-2022)\CS F363 (Compiler Construction)\Assignment\compiler-construction-project\Lexer.py", line 149, in getNextToken
+    raise Exception(f"Invalid lexeme {lexeme+char} in line {self.lineNum}")
+Exception: Invalid lexeme 7d in line 1
